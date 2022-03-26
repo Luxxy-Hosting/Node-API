@@ -65,6 +65,7 @@ router.get('/v1/stats', async function(req,res){
     const hostname = await os.hostname()
     const serversrunning = await (await si.dockerInfo()).containersRunning;
     const serverstopped = await (await si.dockerInfo()).containersStopped;
+    const servers1 = await (await si.dockerInfo()).containers
     
     let convertUptime = await convertSeconds(OsUptime.uptime);
     return await res.json({
@@ -82,6 +83,7 @@ router.get('/v1/stats', async function(req,res){
         disk_total: TotalDisk,
         disk_used: UsedDisk,
         ping: Math.round(NetworkLatency),
+        servers: servers1,
         serversrunning: serversrunning,
         serversstopped: serverstopped,
     })

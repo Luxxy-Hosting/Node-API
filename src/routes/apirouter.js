@@ -118,4 +118,19 @@ router.get('/v1/stats/network', async function(req,res){
     })
 })
 
+
+router.get('/v1/stats/servers', async function(req,res){
+
+  const serversrunning = await (await si.dockerInfo()).containersRunning;
+  const serverstopped = await (await si.dockerInfo()).containersStopped;
+  const servers1 = await (await si.dockerInfo()).containers
+
+  return await res.json({
+    servers: servers1,
+    serversrunning: serversrunning,
+    serversstopped: serverstopped,
+  })
+   
+})
+
 module.exports = router;

@@ -19,7 +19,6 @@ router.get('/v1/stats', async function(req,res){
     let UsedDisk = 0;
     let TotalSwap = 0;
     let UsedSwap = 0;
-    let SystemLoad = 0;
     let NetworkLatency = 0;
     let OsUptime = si.time();
 
